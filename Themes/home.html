@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/bootstrap-5.2.2-dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="home.css">
+  </head>
+  <body>
+    <section class="bg-nav">
+    <nav class="navbar navbar-expand-lg rounded">
+      <div class="container-fluid">
+        <nav class="navbar">
+          <div class="container">
+            <a class="navbar-brand" href="#">
+              <img src="/Images/logo3.svg" alt="Logo" width="40" height="40">
+            </a>
+          </div>
+        </nav>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-white" aria-current="page" href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Tasks</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Payments</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <div class="dropdown">
+              <button
+                class="btn dropdown-toggle text-white"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Welcome User!
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                <li><a class="dropdown-item" href="/Login/login.html">Logout</a></li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+    </section>
+
+    <br />
+
+    <div class="d-flex">
+      <div class="d-flex m-100">
+        <!-- locations,category -->
+        <nav class="left-box flex-column bg-dark d-inline-block">
+          <h3 class="location">LOCATION</h3>
+          <a href="#" class="nav-link text-white tags">Shalimar Bagh</a>
+          <a href="#" class="nav-link text-white tags">Shalimar Bagh</a>
+          <a href="#" class="nav-link text-white tags">Shalimar Bagh</a>
+          <a href="#" class="nav-link text-white tags">Shalimar Bagh</a>
+          <br>
+          <br>
+          <h3 class="location">CATEGORY</h3>
+          <a href="#" class="nav-link text-white tags">Cleaning</a>
+          <a href="#" class="nav-link text-white tags">Cleaning</a>
+          <a href="#" class="nav-link text-white tags">Cleaning</a>
+          <a href="#" class="nav-link text-white tags">Cleaning</a>
+        </nav>
+      </div>
+      <!-- list of tasks -->
+      <div class="d-flex kush flex-column w-50">
+        <div class="list-group w-100 list task task">
+          <a
+            href="/Add Image/image.html"
+            class="list-group-item list-group-item-action"
+            aria-current="true"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-2">Category</h5>
+              <small>3 days ago</small>
+            </div>
+            <div class="d-flex flex-horizontal ml-0">
+              <object
+                class="logo"
+                data="/Images/location1.svg"
+                width="25"
+                height="20"
+              ></object>
+              <p class="mb-0">Shalimar Bagh</p>
+            </div>
+            <p class="mt-0">Some placeholder content in a paragraph.</p>
+          </a>
+        </div>
+        <div class="list-group w-100 list task">
+          <a
+            href="#"
+            class="list-group-item list-group-item-action"
+            aria-current="true"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-2">Category</h5>
+              <small>3 days ago</small>
+            </div>
+            <div class="d-flex flex-horizontal ml-0">
+              <object
+                class="logo"
+                data="/Images/location1.svg"
+                width="25"
+                height="20"
+              ></object>
+              <p class="mb-0">Shalimar Bagh</p>
+            </div>
+            <p class="mt-0">Some placeholder content in a paragraph.</p>
+          </a>
+        </div>
+        <div class="list-group w-100 list task">
+          <a
+            href="#"
+            class="list-group-item list-group-item-action"
+            aria-current="true"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-2">Category</h5>
+              <small>3 days ago</small>
+            </div>
+            <div class="d-flex flex-horizontal ml-0">
+              <object
+                class="logo"
+                data="/Images/location1.svg"
+                width="25"
+                height="20"
+              ></object>
+              <p class="mb-0">Shalimar Bagh</p>
+            </div>
+            <p class="mt-0">Some placeholder content in a paragraph.</p>
+          </a>
+        </div>
+        <div class="list-group w-100 list task">
+          <a
+            href="#"
+            class="list-group-item list-group-item-action"
+            aria-current="true"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-2">Category</h5>
+              <small>3 days ago</small>
+            </div>
+            <div class="d-flex flex-horizontal ml-0">
+              <object
+                class="logo"
+                data="/Images/location1.svg"
+                width="25"
+                height="20"
+              ></object>
+              <p class="mb-0">Shalimar Bagh</p>
+            </div>
+            <p class="mt-0">Some placeholder content in a paragraph.</p>
+          </a>
+        </div>
+        <div class="list-group w-100 list task task">
+          <a
+            href="#"
+            class="list-group-item list-group-item-action"
+            aria-current="true"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-2">Category</h5>
+              <small>3 days ago</small>
+            </div>
+            <div class="d-flex flex-horizontal ml-0">
+              <object
+                class="logo"
+                data="/Images/location1.svg"
+                width="25"
+                height="20"
+              ></object>
+              <p class="mb-0">Shalimar Bagh</p>
+            </div>
+            <p class="mt-0">Some placeholder content in a paragraph.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    <script src="/bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
+  </body>
+</html>
