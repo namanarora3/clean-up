@@ -7,7 +7,9 @@ urlpatterns = [
     path('',views.home,name="home"),
     path('login/',views.loginPage,name='loginPage'),
     path('logout/',views.logoutPage,name="logoutPage"),
-    path('task-image/<str:pk>/',views.task_image,name="taskImage")
+    path('task-image/<str:pk>/',views.task_image,name="taskImage"),
+    path('task-approve/<str:pk>/',views.task_approve,name="taskApprove"),
+    path('task-form/',views.task_form,name="taskForm")
     # path('task',views.getTasks),
     # path('task/<int:pk>/',views.getTask),
 ]

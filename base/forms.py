@@ -5,4 +5,15 @@ class TaskImageForm(forms.ModelForm):
     
     class Meta:
         model = Tasks
-        fields = ['image','completed']
+        fields = ['image']
+
+
+class ApproveForm(forms.ModelForm):
+    class Meta:
+        model = Tasks
+        fields = ['approved']
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Tasks
+        fields = ['name','location','assigned','category']

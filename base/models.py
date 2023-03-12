@@ -20,7 +20,8 @@ class Tasks(models.Model):
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     location = models.ForeignKey(Location,on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
-    completed = models.DateTimeField(null=True, default=None)
+    completed = models.DateTimeField(null=True, default=None,blank=True)
+    approved_time = models.DateTimeField(null=True, default=None,blank=True)
     approved = models.BooleanField(default=False)
     image = models.ImageField(upload_to='task_images',null=True,blank=True)
 
@@ -28,5 +29,5 @@ class Tasks(models.Model):
         return self.name
     
     class Meta:
-        ordering = ['-assigned']
+        ordering = ['-created']
 
