@@ -1,0 +1,43 @@
+{% include "main.html" %}
+
+{% block content %}
+
+<style>
+  .home-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+</style>
+<h1>homepage</h1><hr>
+
+<div class="home-container">
+  <div class="location">
+    <h3>Locations:</h3>
+    <hr>
+    <div>
+      <a href="{% url 'home' %}">All</a>
+    {% for location in locations %}
+    <br> <a href="{% url 'home' %}?q={{ location.name|urlencode }}">{{ location.name }}</a>
+    {% endfor %}
+  </div>
+  </div>
+  <div class="tasks">
+ <h4>Tasks</h4>
+ <hr>
+ <div>
+ {% for task in tasks %}
+ <div>
+ <h4>{{ task.name }}</h4>
+ <div>
+ {{ task.location }} <br>
+ {{ task.category }} <br>
+ <a href="{% url 'taskImage' task.id %}"><button value="Upload image">upload image</button></a>
+ <hr>
+</div>
+</div>
+ {% endfor %}
+</div>
+</div>
+
+</div>
+{% endblock %}
