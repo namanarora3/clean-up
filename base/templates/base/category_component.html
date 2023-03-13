@@ -1,6 +1,5 @@
-<div>
-  <a href="{% url 'home' %}">All</a>
+
+  <a href="{% url 'home' %}" class="nav-link text-white tags">All</a>
 {% for category in categories %}
-<br> <a href="{% url 'home' %}?q={{ category.name|urlencode }}">{{ category.name }}</a>
+<a href="{% url 'home' %}?q={{ category.name|urlencode }} " class="nav-link text-white tags">{{ category.name }}</a>
 {% endfor %}
-</div>

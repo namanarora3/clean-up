@@ -1,31 +1,72 @@
-
-<div>
+{% load static %}
   {% for task in tasks %}
-  <div>
-  <h4>{{ task.name }}</h4>
-  <div>
-  {{ task.location }} <br>
-  {{ task.category }} <br>
-  {% if task.completed is None %}
-    Completed: No <br>
-  {% else %}
-  Completed: Yes <br>
-  <!-- {{ task.image }}
-  <img src="http://127.0.0.1:8000/media/{{task.image}}" alt="not found"> <br> -->
-  {% endif %}
-  {% if task.approved is False %}
-    Status: Not Approved <br>
-  {% else %}
-    Status: Approved <br>
-  {% endif %}
-  {% if request.user.is_staff %}
-    Assigned to- @{{ task.assigned.username}} <br>
-    <a href="{% url 'taskApprove' task.id %}"><button value="Approve Task">Approve Task</button></a>
-  {% else %}
-    <a href="{% url 'taskImage' task.id %}"><button value="Upload image">upload image</button></a>
-  {% endif %}
-  <hr>
- </div>
- </div>
-  {% endfor %}
- </div>
+        {% if request.user.is_staff %}
+        <div class="list-group w-100 list task">
+          <a
+            href="{% url 'taskApprove' task.id %}"
+            class="list-group-item list-group-item-action"
+            aria-current="true"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-2">{{ task.category }}</h5>
+              <small>{{task.created|timesince}} ago</small>
+            </div>
+            <div class="d-flex flex-horizontal ml-0">
+              <object
+                class="logo"
+                data="{% static 'Images/location1.svg' %}"
+                width="25"
+                height="20"
+              ></object>
+              <p class="mb-0">{{ task.location }}</p>
+            </div>
+            {{ task.name }} <br>
+            {% if task.completed is None %}
+              Completed: No <br>
+            {% else %}
+              Completed: Yes <br>
+            {% endif %}
+            {% if task.approved is False %}
+              Status: Not Approved    <br> 
+            {% else %}
+              Status: Approved     <br>    
+            {% endif %}
+            Assigned to- @{{ task.assigned.username}} <br>
+            
+          </a>
+        </div>
+        {% else %}
+        <div class="list-group w-100 list task">
+          <a
+            href="{% url 'taskApprove' task.id %}"
+            class="list-group-item list-group-item-action"
+            aria-current="true"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-2">{{ task.category }}</h5>
+              <small>{{task.created|timesince}} ago</small>
+            </div>
+            <div class="d-flex flex-horizontal ml-0">
+              <object
+                class="logo"
+                data="{% static 'Images/location1.svg' %}"
+                width="25"
+                height="20"
+              ></object>
+              <p class="mb-0">{{ task.location }}</p>
+            </div>
+            {{ task.name }} <br>
+            {% if task.completed is None %}
+              Completed: No <br>
+            {% else %}
+              Completed: Yes <br>
+            {% endif %}
+            {% if task.approved is False %}
+              Status: Not Approved    <br> 
+            {% else %}
+              Status: Approved     <br>    
+            {% endif %}            
+          </a>
+        </div>
+        {% endif %}
+        {% endfor %}

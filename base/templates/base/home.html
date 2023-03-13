@@ -1,37 +1,33 @@
-{% include "main.html" %}
+{% extends "main.html" %}
+{% load static %}
+{% block head %}
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+    {% endblock %}
 
-{% block content %}
-
-<style>
-  .home-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 3fr 1fr;
-  }
-</style>
-<h1>homepage</h1><hr>
-
-<div class="home-container">
-  <div class="sub-container">
-  <div class="location">
-    <h3>Locations:</h3>
-    <hr>
-   {% include "base/location_component.html" %}
-  </div>
-  <div class="location">
-    <h3>Category:</h3> 
-    <hr>
-   {% include "base/Category_component.html" %}
-  </div>
-</div>
-<div> . </div>
-  <div class="tasks">
-  <h4>Tasks</h4>
-  {% if request.user.is_staff %}
+    {% block content %}
+    <br />
+    <div class="d-flex">
+      <div class="d-flex m-100">
+        <!-- locations,category -->
+        <nav class="left-box flex-column bg-dark d-inline-block">
+          <h3 class="location">LOCATION</h3>
+          {% include "base/location_component.html" %}
+          <br>
+          <br>
+          <h3 class="location">CATEGORY</h3>
+          {% include "base/Category_component.html" %}
+          <br><br><br>
+          {% if request.user.is_staff %}
   <a href="{% url 'taskForm' %}"><button>New Task</button></a>
   {% endif %}
-  <hr>
-  {% include "base/task_component.html" %}
-  </div>
-<div> . </div>
-</div>
-{% endblock %}
+        </nav>
+      </div>
+      <!-- list of tasks -->
+      <div class="d-flex kush flex-column w-50">
+        {% include "base/Task_component.html" %}
+      </div>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+  {% endblock %}
