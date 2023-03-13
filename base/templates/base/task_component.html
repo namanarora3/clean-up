@@ -8,9 +8,9 @@
             aria-current="true"
           >
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-2">{{ task.category }}</h5>
+              <h5 class="mb-2 font-weight-bold">{{ task.category }}</h5>
               <small>{{task.created|timesince}} ago</small>
-            </div>
+            </div> 
             <div class="d-flex flex-horizontal ml-0">
               <object
                 class="logo"
@@ -20,16 +20,16 @@
               ></object>
               <p class="mb-0">{{ task.location }}</p>
             </div>
-            {{ task.name }} <br>
+            <h5 class="font-weight-bold w-2 mb-0">{{ task.name }}</h5>
             {% if task.completed is None %}
-              Completed: No <br>
+            Completed: No <br>
             {% else %}
               Completed: Yes <br>
             {% endif %}
             {% if task.approved is False %}
-              Status: Not Approved    <br> 
+            <h6 class="leftbox-right font-weight-bold w-2 mb-0">Status: Not Approved</h6>
             {% else %}
-              Status: Approved     <br>    
+            <h6 class="leftbox-right font-weight-bold mb-0">Status: Approved</h6> 
             {% endif %}
             Assigned to- @{{ task.assigned.username}} <br>
             

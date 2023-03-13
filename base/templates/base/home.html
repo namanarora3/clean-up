@@ -18,9 +18,10 @@
           <br>
           <h3 class="location">CATEGORY</h3>
           {% include "base/Category_component.html" %}
-          <br><br><br>
+          <br>
           {% if request.user.is_staff %}
-  <a href="{% url 'taskForm' %}"><button>New Task</button></a>
+  <a href="{% url 'taskForm' %}"><button type="button" class="btn btn-outline-primary text-white">New task</button>
+  </a>
   {% endif %}
         </nav>
       </div>

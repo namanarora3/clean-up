@@ -6,6 +6,10 @@ body {
     background-size: cover;
 }
 
+.leftbox-right{
+  float:right;
+}
+
 .logo1 {
   background-image: linear-gradient(to top right, #00172d, #0e9898);
 }
@@ -51,6 +55,11 @@ body {
   background-image: linear-gradient(to top right, #00172d, #00264d);
   height: 100%;
   padding: 20px 75% 20px 20%;
-
+  max-height: 525px;
   border-radius: 10px;
+}
+
+#completed {
+  font-weight: bold;
+  width: 4px;
 }
