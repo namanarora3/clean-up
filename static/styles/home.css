@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Montserrat:wght@600&family=Orbitron:wght@400;800&display=swap');
 body {
-  /* background-image: url(/Images/background.jpeg);  */
-  background-image: url(http://127.0.0.1:8000/static/images/background.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
+   background-image: url(/Images/background.jpeg);
+   background-image: url(http://127.0.0.1:8000/static/images/background.jpeg);
+   background-repeat: no-repeat; 
+   background-size: cover; 
+   padding-top: 75px;
 }
 
 .leftbox-right{
-  float:right;
+float: right;
 }
 
 .logo1 {
