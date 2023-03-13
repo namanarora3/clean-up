@@ -84,10 +84,12 @@ def task_approve(request,pk):
     if(request.user.is_staff):
         form=ApproveForm(instance=task)
         if request.method == "POST":
-            form = ApproveForm(request.POST,instance=task)
+            done = request.POST.get('chec')
+            form = ApproveForm(instance=task)
             if form.is_valid():
                 temp = form.save(commit=False)
                 temp.approved_time = datetime.now()
+                temp.approved = done
                 temp.save()
                 return redirect("home")
         context = {"form":form,"task":task}
