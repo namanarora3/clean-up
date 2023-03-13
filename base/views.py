@@ -70,7 +70,7 @@ def task_image(request,pk):
                 temp.save()
                 # messages.SUCCESS(request,"Successfully uploaded")
                 return redirect('home')
-        context = {"form":form}
+        context = {"form":form,"task":task}
         return render(request,'base/task_image.html',context)
     else:
         return HttpResponse("you arent allowed here")
@@ -99,17 +99,32 @@ def task_approve(request,pk):
 @login_required(login_url='loginPage')
 def task_form(request):
 # room=Room.objects.get(id=pk)
-    # task=Tasks.objects.get(id=pk)
+    category=Category.objects.all()
+    location=Location.objects.all()
+    tuser=User.objects.all()
     if(request.user.is_staff):
         form=TaskForm()
         if request.method == "POST":
-            form = TaskForm(request.POST)
-            if form.is_valid():
-                temp = form.save(commit=False)
-                # temp.approved_time = datetime.now()
-                temp.save()
-                return redirect("home")
-        context = {"form":form}
+            category_name = request.POST.get('category')
+            category_n,created = Category.objects.get_or_create(name=category_name)
+            location_name = request.POST.get('location')
+            location_n,created = Location.objects.get_or_create(name=location_name)
+            user_name = request.POST.get('assigned')
+            user_n = User.objects.get(username = user_name)
+            name_n = request.POST.get('name')
+            Tasks.objects.create(
+                name = name_n,
+                assigned = user_n,
+                location = location_n,
+                category = category_n
+            )
+            # form = TaskForm(request.POST)
+            # if form.is_valid():
+            #     temp = form.save(commit=False)
+            #     # temp.approved_time = datetime.now()
+            #     temp.save()
+            return redirect("home")
+        context = {"form":form,"categories":category,"locations":location,"tusers":tuser}
         return render(request,'base/task_form.html',context)
     else:
         return HttpResponse("Login as ADMIN user")
