@@ -46,11 +46,9 @@ body {
 .left-box{
   text-align: left;
   padding: 20px;
-  
   margin-left: 120%;
   background-image: linear-gradient(to top right, #00172d, #00264d);
-  height: 100%;
   padding: 20px 75% 20px 20%;
-
   border-radius: 10px;
+  max-height: 20px;
 }
