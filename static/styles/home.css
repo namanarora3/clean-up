@@ -7,8 +7,18 @@ body {
    padding-top: 75px;
 }
 
+.bg-box {
+  background-image: linear-gradient(to top right, #c5e0e0, #edf4f1);
+}
+
 .leftbox-right{
 float: right;
+padding-right: 15px;
+font-weight: bolder;
+}
+
+.completed {
+  float: right;
 }
 
 .logo1 {
