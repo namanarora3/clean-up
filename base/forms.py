@@ -16,4 +16,4 @@ class ApproveForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Tasks
-        fields = ['name','location','assigned','category']
+        fields = ['name','location','assigned','category', 'coins']

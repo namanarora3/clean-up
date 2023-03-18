@@ -24,6 +24,7 @@ class Tasks(models.Model):
     approved_time = models.DateTimeField(null=True, default=None,blank=True)
     approved = models.BooleanField(default=False)
     image = models.ImageField(upload_to='task_images',null=True,blank=True)
+    coins = models.IntegerField(default=10)
 
     def __str__(self):
         return self.name
@@ -31,3 +32,10 @@ class Tasks(models.Model):
     class Meta:
         ordering = ['-created']
 
+
+class UserData(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE, related_name='coins')
+    coins = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.coins)

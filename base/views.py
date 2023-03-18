@@ -4,10 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Location,Category,Tasks
+from .models import Location,Category,Tasks, UserData
 from .forms import TaskImageForm,ApproveForm,TaskForm
 from datetime import datetime
 from django.db.models import Q
+from django.db.models import Count
+from django.core.exceptions import ObjectDoesNotExist
 
 def loginPage(request):
     if(request.user.is_authenticated):
@@ -39,18 +41,26 @@ def logoutPage(request):
 
 @login_required(login_url='loginPage')
 def home(request):
+    try:
+        print(request.user.coins.first().coins)
+    except ObjectDoesNotExist:
+        print("There is no restaurant here.")
+
     q=request.GET.get('q') if request.GET.get('q') != None else ''
     if request.user.is_staff:
         tasks = Tasks.objects.filter(
             Q(location__name__icontains = q) |
             Q(category__name__icontains = q)
-        )
+        ).annotate(null_nullcompleted = Count("completed")).order_by('-null_nullcompleted','approved','created')
+        # users = User.objects.annotate(count = Count("tasks"))
+        # for user in users:
+        #     print(user.username,user.count)
     else:
         tasks = request.user.tasks_set.filter(
             Q(location__name__icontains = q) |
             Q(category__name__icontains = q)
-        )
-    print(tasks)
+        ).annotate(null_nullcompleted = Count("completed")).order_by('null_nullcompleted','-approved','created')
+    # print(tasks)
     location = Location.objects.all()
     category = Category.objects.all()
     context = {'tasks':tasks,'locations':location, "categories":category}
@@ -81,16 +91,19 @@ def task_image(request,pk):
 def task_approve(request,pk):
 # room=Room.objects.get(id=pk)
     task=Tasks.objects.get(id=pk)
+    userd = UserData.objects.get(user = task.assigned)
     if(request.user.is_staff):
         form=ApproveForm(instance=task)
         if request.method == "POST":
-            done = request.POST.get('chec')
-            form = ApproveForm(instance=task)
+            done = request.POST.get('approved', False)
+            form = ApproveForm(request.POST, instance=task)
             if form.is_valid():
                 temp = form.save(commit=False)
-                temp.approved_time = datetime.now()
-                temp.approved = done
+                temp.approved = bool(done)
                 temp.save()
+                print(userd.coins, task.coins)
+                userd.coins = userd.coins + task.coins
+                userd.save()
                 return redirect("home")
         context = {"form":form,"task":task}
         return render(request,'base/task_approve.html',context)
@@ -118,7 +131,8 @@ def task_form(request):
                 name = name_n,
                 assigned = user_n,
                 location = location_n,
-                category = category_n
+                category = category_n,
+                coins = request.POST.get('coins')
             )
             # form = TaskForm(request.POST)
             # if form.is_valid():

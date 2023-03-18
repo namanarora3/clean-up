@@ -1,76 +1,54 @@
 {% load static %}
   {% for task in tasks %}
-        {% if request.user.is_staff %}
         <div class="list-group w-100 list task">
           <a
-            href="{% url 'taskApprove' task.id %}"
+            href="{% if request.user.is_staff %}{% if task.approved == False and task.completed is not null%}{% url 'taskApprove' task.id %}{% else %}#{% endif %}{% else %}{% if task.completed is null%}{% url 'taskImage' task.id %}{% else %}#{% endif %}{% endif %}"
             class="bg-box list-group-item list-group-item-action"
             aria-current="true"
           >
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-2 font-weight-bold">{{ task.category }}</h5>
+              <h5 class="font-weight-boldee w-2 mb-0">{{ task.name }}</h5>
               <small>{{task.created|timesince}} ago</small>
             </div> 
             <div class="d-flex flex-horizontal ml-0 mb-0 justify-content-end">
+              <p class="mb-0 ">{{ task.location }}</p>
               <object
                 class="logo"
                 data="{% static 'Images/location1.svg' %}"
                 width="25"
                 height="20"
               ></object>
-              <p class="mb-0">{{ task.location }}</p>
+              <br>
+              <p class="mb-0 ">{{ task.coins }}</p>
+              <object
+                class="logo"
+                data="{% static 'Images/coin2.svg' %}"
+                width="25"
+                height="20"
+              ></object>
             </div>
-            <h5 class="font-weight-bold w-2 mb-0">{{ task.name }}</h5>
+            {% if request.user.is_staff %}
+            <h5 class="mb-2 font-weight-bold">{{ task.category }}</h5>
+            {% endif %}
             {% if task.completed is None %}
             <h6 class="completed mb-0 ml-5 text-danger">Completed: No </h6>
             {% else %}
             <h6 class="completed mb-0 ml-5 text-success">Completed: Yes </h6>
             {% endif %}
+            {% if task.completed is not none %}
             {% if task.approved is False %}
-<<<<<<< HEAD
-            <h6 class="leftbox-right font-weight-bold w-2 mb-0 text-red">Status: Not Approved</h6>
-=======
             <h6 class="leftbox-right font-weight-bolder w-2 mb-0 text-danger">Status: Not Approved</h6>
->>>>>>> dd22ce7b8b996bcde0a1660857063b34d2b505f8
             {% else %}
             <h6 class="leftbox-right mb-0 text-success">Status: Approved</h6> 
             {% endif %}
+            {% endif %}
+            {% if request.user.is_staff %}
             Assigned to- @{{ task.assigned.username}} <br>
+            {% else %}
+            <h5 class="mb-2 font-weight-bold">{{ task.category }}</h5>
+            {% endif %}
             
           </a>
         </div>
-        {% else %}
-        <div class="list-group w-100 list task">
-          <a
-            href="{% url 'taskImage' task.id %}"
-            class="list-group-item list-group-item-action"
-            aria-current="true"
-          >
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-2">{{ task.category }}</h5>
-              <small>{{task.created|timesince}} ago</small>
-            </div>
-            <div class="d-flex flex-horizontal ml-0">
-              <object
-                class="logo"
-                data="{% static 'Images/location1.svg' %}"
-                width="25"
-                height="20"
-              ></object>
-              <p class="mb-0">{{ task.location }}</p>
-            </div>
-            {{ task.name }} <br>
-            {% if task.completed is None %}
-              Completed: No <br>
-            {% else %}
-              Completed: Yes <br>
-            {% endif %}
-            {% if task.approved is False %}
-              Status: Not Approved    <br> 
-            {% else %}
-              Status: Approved     <br>    
-            {% endif %}            
-          </a>
-        </div>
-        {% endif %}
-        {% endfor %}
+       
+  {% endfor %}

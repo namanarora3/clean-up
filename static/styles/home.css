@@ -5,6 +5,7 @@ body {
    background-repeat: no-repeat; 
    background-size: cover; 
    padding-top: 75px;
+   background-attachment: fixed;
 }
 
 .bg-box {

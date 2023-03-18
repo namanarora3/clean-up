@@ -21,12 +21,15 @@
                 <form method="POST">
                     {% csrf_token %}
                     <div class="form-group d-flex align-items-center justify-content-center">
-                        <img class="image-main" src="http://127.0.0.1:8000/media/{{task.image}}" alt="">
+                        <img class="image-main" src="http://127.0.0.1:8000/media/{{task.image}}" alt="Task not yet completed">
                     </div>
                     <div class="form-group">
                         <div class="form-check d-flex align-items-center justify-content-center">
-                            <input class="form-check-input" type="checkbox" name="chec" value="" id="flexCheckDefault"> 
-
+                            {% if task.approved == True %}
+                            <input class="form-check-input" type="checkbox" value=True name="approved" id="flexCheckDefault" checked> 
+                            {% else %}
+                            <input class="form-check-input" type="checkbox" value=True name="approved" id="flexCheckDefault"> 
+                            {% endif %}
                             <!-- {{ form.as_p }} -->
                             <label class="form-check-label label" for="flexCheckDefault">
                               Approve
